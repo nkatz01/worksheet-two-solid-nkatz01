@@ -1,24 +1,35 @@
-﻿using System;
+﻿#define SMOKE
+using System;
 using System.Collections.Generic;
 
 namespace AlarmSystem
 {
     public class ControlUnit
     {
+		
+		
+		
         public void PollSensors()
         {
             List<ISensor> sensors = new List<ISensor>();
             sensors.Add(new FireSensor());
-            sensors.Add(new SmokeSensor());
-
+         
+			 #region
+#if SMOKE  
+			sensors.Add(new SmokeSensor());
+			
+#endif
+			#endregion
+			sensors.Add(new MotionSensor());
             foreach (ISensor sensor in sensors)
-            {
-                if (sensor.IsTriggered)
+            { 
+                if (sensor.IsTriggered )//&& !(sensor is IcableSensor) )
                 {
                     Console.WriteLine("A " + sensor.GetSensorType() + " sensor was triggered at " + sensor.GetLocation());
                 }
                 else
                 {
+					
                     Console.WriteLine("Polled " + sensor.GetSensorType() + " at " + sensor.GetLocation() + " successfully");
                 }
             }
@@ -31,7 +42,7 @@ namespace AlarmSystem
         string GetLocation();
         string GetSensorType();
      }
-	   interface IbatterySensor
+	   interface IbatterySensor : ISensor
     {
        
        

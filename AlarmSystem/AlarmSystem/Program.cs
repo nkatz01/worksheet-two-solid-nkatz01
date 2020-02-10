@@ -6,7 +6,7 @@ namespace AlarmSystem
     {
         static void Main(string[] args)
         {
-            ControlUnit controlUnit = new ControlUnit();
+            ControlUnit controlUnit = new ControlUnit();//pass sensors here
 			 //Console.WriteLine(string.Join('-', args)); @(1,2,3) or "[1,2,3"
            // string input =args[0]; //string.Empty;
 			string input ="exit";

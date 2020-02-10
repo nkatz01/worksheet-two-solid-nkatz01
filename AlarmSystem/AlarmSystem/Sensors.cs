@@ -1,7 +1,7 @@
 ﻿using System;
 namespace AlarmSystem
 {
-    public class FireSensor : ISensor
+    public class FireSensor : IbatterySensor
     {
         public bool IsTriggered { get; set; }
 
@@ -27,7 +27,7 @@ namespace AlarmSystem
         }
     }
 
-    public class SmokeSensor : ISensor
+    public class SmokeSensor : IbatterySensor
     {
         public bool IsTriggered { get; set; }
 
@@ -52,7 +52,7 @@ namespace AlarmSystem
         }
     }
 	
-	public class MotionSensor : ISensor
+	public class MotionSensor : IcableSensor
     {
         public bool IsTriggered { get; set; }
 

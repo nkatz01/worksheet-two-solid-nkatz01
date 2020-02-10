@@ -30,6 +30,16 @@ namespace AlarmSystem
         bool IsTriggered { get; set; }
         string GetLocation();
         string GetSensorType();
+     }
+	   interface IbatterySensor
+    {
+       
+       
         double GetBatteryPercentage();
+    }
+		   interface IcableSensor : ISensor
+    {
+       
+       
     }
 }

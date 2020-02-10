@@ -51,4 +51,26 @@ namespace AlarmSystem
             return -1.0;
         }
     }
+	
+	public class MotionSensor : ISensor
+    {
+        public bool IsTriggered { get; set; }
+
+        public MotionSensor()
+        {
+            IsTriggered = false;
+        }
+
+        public string GetLocation()
+        {
+            return String.Empty;
+        }
+
+        public string GetSensorType()
+        {
+            return String.Empty;
+        }
+
+        
+    }
 }

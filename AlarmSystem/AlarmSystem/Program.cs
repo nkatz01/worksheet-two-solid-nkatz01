@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿//#define ASK
+//#define DEVMOD
+using System.Collections.Generic;
 using System;
 //dotnet run
 namespace AlarmSystem
@@ -22,10 +24,22 @@ namespace AlarmSystem
 				new MotionSensor()
 				
 				});//pass sensors here
-			 //Console.WriteLine(string.Join('-', args)); @(1,2,3) or "[1,2,3"
-           // string input =args[0]; //string.Empty;
+				
+			SecurityControlUnit<IcableSensor> securityControlUnit = new SecurityControlUnit<IcableSensor>(new List<IcableSensor>{ new MotionSensor()});	
+			#region
+#if DEVMOD			
+				
+#endif	
+ #endregion
+  TimeSpan  now = DateTime.Now.TimeOfDay;
+				TimeSpan nowTrimmed = new TimeSpan(now.Hours, now.Minutes, now.Seconds);
+TimeSpan FROM = new  TimeSpan(22, 0, 0);
+				TimeSpan UNTIL = new TimeSpan(06, 0, 0);
+  Console.WriteLine(nowTrimmed  );
+
+
 			
-#if ISOLATE			
+#if ISOLATE	&& ASK		
 			string input ="exit";
 			
 		
@@ -37,13 +51,14 @@ namespace AlarmSystem
                 if (input.Equals("poll"))
                 {
 				
-                 //   controlUnit.PollSensors(); uncomment
+                   controlUnit.PollSensors(); //uncomment
                  }
             }
  #endif
 				  
 
-				controlUnit.PollSensors(); //remove
+			 controlUnit.PollSensors(); //remove
+			securityControlUnit.PollSensors(); //remove
 			}
 
     }

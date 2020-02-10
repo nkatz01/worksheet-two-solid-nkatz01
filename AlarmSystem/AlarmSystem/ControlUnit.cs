@@ -17,43 +17,45 @@ namespace AlarmSystem
 		} 
 		
 		
-        public void PollSensors()
-        {
+        public virtual void PollSensors()
+        {	
           
 			  
-			 
+			
 #if ISOLATE && POLL
-             foreach (ISensor sensor in sensors)
-            { 
-                if (sensor.IsTriggered )//&& !(sensor is IcableSensor) )
-                {
-                    Console.WriteLine("A " + sensor.GetSensorType() + " sensor was triggered at " + sensor.GetLocation());
-                }
-                else
-                {
-					
-                    Console.WriteLine("Polled " + sensor.GetSensorType() + " at " + sensor.GetLocation() + " successfully");
-                }
-            }
+				 foreach (ISensor sensor in sensors)
+				{ 
+					if (sensor.IsTriggered )//&& !(sensor is IcableSensor) )
+					{
+						Console.WriteLine("A " + sensor.GetSensorType() + " sensor was triggered at " + sensor.GetLocation());
+					}
+					else
+					{
+						
+						Console.WriteLine("Polled " + sensor.GetSensorType() + " at " + sensor.GetLocation() + " successfully");
+					}
+				}
+			
+			
 #endif
 			 
 			Console.WriteLine("I'm still working");
         }
     }
 
-     interface ISensor
+    public interface ISensor
     {
         bool IsTriggered { get; set; }
         string GetLocation();
         string GetSensorType();
      }
-	    interface IbatterySensor : ISensor
+	 public  interface IbatterySensor : ISensor
     {
        
        
         double GetBatteryPercentage();
     }
-	 	   interface IcableSensor : ISensor
+	 public	   interface IcableSensor : ISensor
     {
        
        

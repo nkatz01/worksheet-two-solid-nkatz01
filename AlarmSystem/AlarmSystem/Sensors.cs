@@ -3,14 +3,31 @@ namespace AlarmSystem
 {
     public class FireSensor : IBatterySensor
     {
-        public bool IsTriggered { get; set; }
+        public bool IsTriggered() {
+            Random RandomGen = new Random();          //https://stackoverflow.com/questions/37858551/implement-percent-chance-in-c-sharp
+            int randomValue = RandomGen.Next(100);
+            if (randomValue <= 10)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public double BatteryPercentage { 
+        
+        
+        }
 
         public FireSensor()
         {
-            IsTriggered = false;
+           
+            
+            BatteryPercentage = double(100);
         }
 
 
+
+        
         public string GetLocation()
         {
             return String.Empty; // convention is to use the .NET class for properties/methods/constants
@@ -29,11 +46,19 @@ namespace AlarmSystem
 
     public class SmokeSensor : IBatterySensor
     {
-        public bool IsTriggered { get; set; }
+        public bool IsTriggered() { 
+            Random RandomGen = new Random();         
+        int randomValue = RandomGen.Next(100);
+            if (randomValue <= 10)
+            {
+                return true;
+            }
+            return false;
+            }
 
         public SmokeSensor()
         {
-            IsTriggered = false;
+             
         }
 
         public string GetLocation()

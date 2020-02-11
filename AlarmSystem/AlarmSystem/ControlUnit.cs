@@ -49,6 +49,7 @@ namespace AlarmSystem
         bool IsTriggered { get; set; }
         string GetLocation();
         string GetSensorType();
+		  string Location { get; set; }
     }
     interface IBatterySensor : ISensor
     {
@@ -61,5 +62,74 @@ namespace AlarmSystem
     {
 
 
+    }
+	
+	 interface  ILocationProvider
+    {
+		string Location { get; set; }
+
+    }
+	
+	 interface ILocationAttacher
+    {
+        ILocationProvider LocationProvider { get; set; }
+		ISensor Receiver { get; set; }
+		
+        void Attach();
+    }
+
+	
+	
+	
+	internal class StandardLocationExtractor : ILocationAttacher
+    {
+        public StandardLocationExtractor(ILocationProvider provider, ISensor receiver)
+        {
+            LocationProvider = provider;
+			
+        }
+
+        public ILocationProvider LocationProvider { get; set; }
+		public ISensor Receiver { get; set; }
+		
+        public void Attach()
+        {
+            if (LocationProvider == null || Receiver == null )
+            {
+                throw new Exception($"You must set the property LocationProvider and Receiver of class: {GetType()}");
+            }
+
+            Receiver.Location=LocationProvider.Location;
+        }
+    }
+	
+	 internal class SensorInAuditorium : ILocationProvider
+    {
+        public SensorInAuditorium()
+        {
+            Location = "In the auditorium";
+        }
+
+        public string Location { get; set; }
+    }
+	
+	 internal class SensorLobby1stFloor : ILocationProvider
+    {
+        public SensorLobby1stFloor()
+        {
+            Location = "Lobby 1st floor";
+        }
+
+        public string Location { get; set; }
+    }
+
+	 internal class SensorAtFrontDoor : ILocationProvider
+    {
+        public SensorAtFrontDoor()
+        {
+            Location = "At the front door";
+        }
+
+        public string Location { get; set; }
     }
 }

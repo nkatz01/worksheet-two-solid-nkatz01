@@ -1,65 +1,77 @@
-﻿//#define ASK
-//#define DEVMOD
+﻿#define ASK
+#define DEVMOD
 using System.Collections.Generic;
 using System;
+using System.Reflection;
+using Autofac;
 //dotnet run
 namespace AlarmSystem
 {
     class Program
     {
+
         static void Main(string[] args)
         {
-			 // List<ISensor> sensors = new List<ISensor>();
-           // sensors.Add(new FireSensor());
-         
+            
 
-			//sensors.Add(new SmokeSensor());
-			
+            var builder = new ContainerBuilder();
+            builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly()).AsSelf().AsImplementedInterfaces();
 
-			//sensors.Add(new MotionSensor());
-			
-            ControlUnit<ISensor> controlUnit = new ControlUnit<ISensor>(new List<ISensor>{
-				new FireSensor(),
-				new SmokeSensor(),
-				new MotionSensor()
-				
-				});//pass sensors here
-				
-			SecurityControlUnit<IcableSensor> securityControlUnit = new SecurityControlUnit<IcableSensor>(new List<IcableSensor>{ new MotionSensor()});	
-			#region
-#if DEVMOD			
-				
-#endif	
- #endregion
-  TimeSpan  now = DateTime.Now.TimeOfDay;
-				TimeSpan nowTrimmed = new TimeSpan(now.Hours, now.Minutes, now.Seconds);
-TimeSpan FROM = new  TimeSpan(22, 0, 0);
-				TimeSpan UNTIL = new TimeSpan(06, 0, 0);
-  Console.WriteLine(nowTrimmed  );
+            var container = builder.Build();
+            try
+            {
+                using var scope = container.BeginLifetimeScope();
+                var s1 = scope.Resolve<IBatterySensor>();
+                var s2 = scope.Resolve<IBatterySensor>();
+                var s3 = scope.Resolve<ICableSensor>();
+                ControlUnit<ISensor> controlUnit = new ControlUnit<ISensor>(new List<ISensor> { s1, s2 });
+
+                SecurityControlUnit<ICableSensor> securityControlUnit = new SecurityControlUnit<ICableSensor>(new List<ICableSensor> { s3 });
+                // Console.WriteLine("all fine");
 
 
-			
-#if ISOLATE	&& ASK		
-			string input ="exit";
+
+
+                #region
+#if DEVMOD
+
+
+
+
+
+
+
+
+#if ISOLATE && ASK
+			    string input ="exit";
 			
 		
-            while (input.Equals("exit"))
-            {
-				
-                Console.WriteLine("Type \"poll\" to poll all sensors once or \"exit\" to exit");
-                input = Console.ReadLine();
-                if (input.Equals("poll"))
+                while (input.Equals("exit"))
                 {
 				
-                   controlUnit.PollSensors(); //uncomment
-                 }
-            }
- #endif
-				  
+                    Console.WriteLine("Type \"poll\" to poll all sensors once or \"exit\" to exit"); 
+                    input = Console.ReadLine();
+                    if (input.Equals("poll"))
+                    {
+				
+                       controlUnit.PollSensors(); //uncomment
+                     }
+                }
+#endif
 
-			 controlUnit.PollSensors(); //remove
-			securityControlUnit.PollSensors(); //remove
-			}
+
+                controlUnit.PollSensors(); //remove
+                securityControlUnit.PollSensors(); //remove
+
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine("Error during configuration demonstration: {0}", ex);
+            }
+
+#endif
+            #endregion
+        }
 
     }
 }

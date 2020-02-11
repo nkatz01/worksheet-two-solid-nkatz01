@@ -3,7 +3,13 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-	  <DefineConstants><!----> ISOLATE</DefineConstants> 
+    <DefineConstants>
+      <!----> ISOLATE
+    </DefineConstants>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="5.0.0" />
+  </ItemGroup>
 
 </Project>

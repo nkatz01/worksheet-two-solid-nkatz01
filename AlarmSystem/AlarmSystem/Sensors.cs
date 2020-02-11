@@ -1,13 +1,13 @@
 ﻿using System;
 namespace AlarmSystem
 {
-    public class FireSensor : IbatterySensor
+    public class FireSensor : IBatterySensor
     {
         public bool IsTriggered { get; set; }
 
         public FireSensor()
         {
-            IsTriggered = false;            
+            IsTriggered = false;
         }
 
 
@@ -27,7 +27,7 @@ namespace AlarmSystem
         }
     }
 
-    public class SmokeSensor : IbatterySensor
+    public class SmokeSensor : IBatterySensor
     {
         public bool IsTriggered { get; set; }
 
@@ -51,8 +51,8 @@ namespace AlarmSystem
             return -1.0;
         }
     }
-	
-	public class MotionSensor : IcableSensor
+
+    public class MotionSensor : ICableSensor
     {
         public bool IsTriggered { get; set; }
 
@@ -71,6 +71,6 @@ namespace AlarmSystem
             return String.Empty;
         }
 
-        
+
     }
 }

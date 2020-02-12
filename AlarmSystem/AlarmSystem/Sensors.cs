@@ -24,25 +24,11 @@
         }
 		
 		
-	/* 	public static Random RandomGen = new Random();
- 
-int clickPercentage = 70;
-for (int i = 0; i < 100; i++)
-{
-    int randomValueBetween0And99 = RandomGen.Next(100);
-    if (randomValueBetween0And99 < clickPercentage)
-    {
-        //do 70% times
-    }
-} */
-		        public bool IsTriggered() {
-				
-				Random rand = new Random();
-				 int numberUnder100 = rand.Next(100);
-				  if (numberUnder100 < TRIGGER)
-					  return true; 
-				  return false;
-			  }
+	
+			public bool IsTriggered() {
+				 
+				 return this.IsTriggeredDefault();
+			 }
 
 	 
 
@@ -79,15 +65,11 @@ public double TRIGGER  { get;   }
           return Location;	
         }
 		
-		 public bool IsTriggered() {
-				
-				Random rand = new Random();
-				 int numberUnder100 = rand.Next(100);
-				  if (numberUnder100 < TRIGGER)
-					  return true; 
-				  return false;
-			  }
-		 
+	
+		public bool IsTriggered() {
+				 
+				 return this.IsTriggeredDefault();
+			 }
 
         public string GetSensorType()
         {
@@ -121,15 +103,29 @@ public double TRIGGER  { get;   }
                return this.GetType().ToString();
         }
 		
-		 public bool IsTriggered() {
-				
-				Random rand = new Random();
-				 int numberUnder100 = rand.Next(100);
-				  if (numberUnder100 < TRIGGER)
-					  return true; 
-				  return false;
-			  }
-
+		
+			 public bool IsTriggered() {
+				 
+				 return this.IsTriggeredDefault();
+			 }
 
     }
+	
+		 static class ISensorHelper
+	{
+		
+		public static bool IsTriggeredDefault(this ISensor iSensor)
+		{
+				Random rand = new Random();
+				int numberUnder100 = rand.Next(100);
+				if (numberUnder100 < iSensor.TRIGGER)
+					return true; 
+				return false;
+		 }
+		 
+		 
+	}
+	
+	
+
 }

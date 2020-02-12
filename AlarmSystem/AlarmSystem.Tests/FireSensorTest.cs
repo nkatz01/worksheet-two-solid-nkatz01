@@ -17,8 +17,8 @@ namespace AlarmSystem.Tests
         }
 		
 		 private static IContainer Container { get; set; }
-		private ILocationProvider AuditorProv { get; set; }
-		   private  IBatterySensor FireSensor { get; set; }
+		public ILocationProvider AuditorProv { get; set; }
+		   public  IBatterySensor FireSensor { get; set; }
 			
 			public FireSensorTest()
 			{
@@ -35,30 +35,29 @@ namespace AlarmSystem.Tests
 				 			
 				  AuditorProv = Container.Resolve<ILocationProvider>();
 				  FireSensor = Container.Resolve<IBatterySensor>();
-				
-				 //   Trace.WriteLine("Trace Trace the World");
-          //  Debug.WriteLine("Debug Debug WOrld");
-			 
-					//lp1.MessageProvider = mp;
-				//    mr.Render();
-				
-				//builder.RegisterType<SensorLobby1stFloor>().As<ILocationProvider>();
-			//	builder.RegisterType<SensorAtFrontDoor>().As<ILocationProvider>();
-				
-				
-			}
+            //   Trace.WriteLine("Trace Trace the World");
+            //  Debug.WriteLine("Debug Debug WOrld");
+
+            //lp1.MessageProvider = mp;
+            //    mr.Render();
+
+            //builder.RegisterType<SensorLobby1stFloor>().As<ILocationProvider>();
+            //	builder.RegisterType<SensorAtFrontDoor>().As<ILocationProvider>();
+
+
+        }
 		
 			
 		[TestMethod]
 		public void TestCreatedSensors(){
-			  
-			    Debug.Assert(FireSensor.Location.Equals(AuditorProv.Location),"no", "Yes");
-/* 			  Trace.WriteLine("Trace Trace the World");
-            Debug.WriteLine("Debug Debug WOrld");  
-			   Trace.Write("blabla");
-			  TestContext.WriteLine("Message...");
-			System.Diagnostics.Debug.WriteLine("Matrix has you..."); */
-		}
+
+
+       Assert.AreEqual(true, 1 == 2, "Failed on the following test case: AB");
+
+           // Assert.AreEqual(FireSensor.Location, AuditorProv.Location, "yooo");
+            //   TestContext.WriteLine((FireSensor.Location== AuditorProv.Location).ToString());
+            //Assert(FireSensor.Location == AuditorProv.Location, "true", "false");
+        }
 		
 		
 		

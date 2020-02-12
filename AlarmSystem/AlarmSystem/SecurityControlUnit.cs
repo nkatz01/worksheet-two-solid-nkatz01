@@ -23,13 +23,16 @@ namespace AlarmSystem
              if ((nowTrimmed > FROM) || (nowTrimmed < FROM && nowTrimmed <= UNTIL))
             {
                 Console.WriteLine("Who's not asleep???");
-
+				
                 base.PollSensors();
             }
             else
             {
+				
                 Console.WriteLine("Oh oh, I roam the city at night");
             }
+			
+			 
         }
 
 #endif

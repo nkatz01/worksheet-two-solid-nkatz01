@@ -18,7 +18,12 @@ namespace AlarmSystem
             //Console.WriteLine(sensors);
         }
 
-
+		
+		
+		 
+		
+		
+		
         public virtual void PollSensors()
         {
 
@@ -36,6 +41,11 @@ namespace AlarmSystem
 
                     Console.WriteLine("Polled " + sensor.GetSensorType() + " at " + sensor.GetLocation() + " successfully");
                 }
+				 // Console.WriteLine(  sensor is IBatterySensor );
+				//if (sensor  is IBatterySensor){
+					 //Console.WriteLine(  sensor is ICableSensor );
+				  
+				//}
             }
 
 
@@ -45,6 +55,26 @@ namespace AlarmSystem
         }
     }
 
+	interface  IControlUnit<T>
+		{
+			public List<T> sensors { get; set; }
+			void PollSensors();
+			
+		}
+	interface ISafetyControlUnit<T> : IControlUnit<T>
+		{
+			void GetBatteryPercentage();
+
+
+		}
+
+	interface ISecurityControlUnit<T> : IControlUnit<T>
+		{
+			
+		
+
+		}
+	
     interface ISensor
     {
         bool IsTriggered { get; set; }
@@ -55,8 +85,9 @@ namespace AlarmSystem
     interface IBatterySensor : ISensor
     {
 
-
-        double GetBatteryPercentage();
+		    double BatteryPercentage { get;  set; }
+         void UseBattery();
+		 
     }
 
     interface ICableSensor : ISensor

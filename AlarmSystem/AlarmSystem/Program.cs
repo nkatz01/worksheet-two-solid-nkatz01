@@ -24,8 +24,12 @@ namespace AlarmSystem
                 var s1 = scope.Resolve<IBatterySensor>();				
                 var s2 = scope.Resolve<IBatterySensor>();
                 var s3 = scope.Resolve<ICableSensor>();
-                ControlUnit<ISensor> controlUnit = new ControlUnit<ISensor>(new List<ISensor> { s1, s2 });
-
+               // ControlUnit<ISensor> controlUnit = new ControlUnit<ISensor>(new List<ISensor> { s1, s2 });
+                 SafetyControlUnit<IBatterySensor> SafetycontrolUnit = new SafetyControlUnit<IBatterySensor>(new List<IBatterySensor> { s1, s2 });
+				
+				 
+				 //Console.WriteLine(  s1 is IBatterySensor ); 
+				
                 SecurityControlUnit<ICableSensor> securityControlUnit = new SecurityControlUnit<ICableSensor>(new List<ICableSensor> { s3 });
                 // Console.WriteLine("all fine");
 
@@ -54,15 +58,17 @@ namespace AlarmSystem
                     if (input.Equals("poll"))
                     {
 				
-                       controlUnit.PollSensors(); //uncomment
+                       SafetyControlUnit.PollSensors(); //uncomment
                      }
                 }
 #endif
 
 
-                controlUnit.PollSensors(); //remove
-                securityControlUnit.PollSensors(); //remove
-
+                SafetycontrolUnit.PollSensors(); //remove
+               securityControlUnit.PollSensors(); //remove
+				 SafetycontrolUnit.GetBatteryPercentage();
+					SafetycontrolUnit.PollSensors();
+					SafetycontrolUnit.GetBatteryPercentage();
             }
             catch (Exception ex)
             {

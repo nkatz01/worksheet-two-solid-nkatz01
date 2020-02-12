@@ -67,8 +67,8 @@ namespace AlarmSystem
                 SafetycontrolUnit.PollSensors(); //remove
                securityControlUnit.PollSensors(); //remove
 				 SafetycontrolUnit.GetBatteryPercentage();
-					SafetycontrolUnit.PollSensors();
-					SafetycontrolUnit.GetBatteryPercentage();
+				 
+					
             }
             catch (Exception ex)
             {

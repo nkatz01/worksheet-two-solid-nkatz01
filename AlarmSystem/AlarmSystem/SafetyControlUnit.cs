@@ -17,7 +17,7 @@ namespace AlarmSystem
         {
             foreach (IBatterySensor sensor in sensors)
 			{
-			 Console.WriteLine(sensor.GetSensorType() + "Battery power of the Sensor " + sensor.GetLocation()+" is at " + Math.Round(sensor.BatteryPercentage,2) + "percent");
+			 Console.WriteLine("Battery power of the Sensor at " + sensor.GetLocation()+" of type "+sensor.GetSensorType()+" is at " + Math.Round(sensor.BatteryPercentage,2) + "percent");
 			}
         }
 		

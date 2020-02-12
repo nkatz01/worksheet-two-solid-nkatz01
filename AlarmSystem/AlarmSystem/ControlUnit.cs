@@ -32,7 +32,7 @@ namespace AlarmSystem
 #if ISOLATE && POLL
             foreach (ISensor sensor in sensors)
             {
-                if (sensor.IsTriggered)//&& !(sensor is ICableSensor) )
+                if (sensor.IsTriggered())//&& !(sensor is ICableSensor) )
                 {
                     Console.WriteLine("A " + sensor.GetSensorType() + " sensor was triggered at " + sensor.GetLocation());
                 }
@@ -77,7 +77,8 @@ namespace AlarmSystem
 	
     interface ISensor
     {
-        bool IsTriggered { get; set; }
+		double TRIGGER  { get;   }
+        bool IsTriggered();// { get; set; }
         string GetLocation();
         string GetSensorType();
 		  string Location { get; set; }
@@ -87,7 +88,7 @@ namespace AlarmSystem
 
 		    double BatteryPercentage { get;  set; }
          void UseBattery();
-		 
+		  double SINGLE_USAGE_DECREMENT  { get;   }
     }
 
     interface ICableSensor : ISensor

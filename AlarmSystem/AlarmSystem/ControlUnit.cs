@@ -1,4 +1,5 @@
 ﻿#define POLL
+
 using System;
 using System.Collections.Generic;
 
@@ -40,7 +41,7 @@ namespace AlarmSystem
 
 #endif
 
-            Console.WriteLine("I'm still working");
+           // Console.WriteLine("I'm still working");
         }
     }
 
@@ -86,7 +87,7 @@ namespace AlarmSystem
         public StandardLocationExtractor(ILocationProvider provider, ISensor receiver)
         {
             LocationProvider = provider;
-			
+			Receiver = receiver;
         }
 
         public ILocationProvider LocationProvider { get; set; }

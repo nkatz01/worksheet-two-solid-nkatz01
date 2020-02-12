@@ -1,4 +1,4 @@
-﻿#define ASK
+﻿//#define ASK
 #define DEVMOD
 using System.Collections.Generic;
 using System;
@@ -22,6 +22,11 @@ namespace AlarmSystem
             {
                 using var scope = container.BeginLifetimeScope();
                 var s1 = scope.Resolve<IBatterySensor>();
+				
+				ILocationProvider lp = new SensorInAuditorium();
+				ILocationAttacher le = new StandardLocationExtractor(lp, s1);
+				le.Attach();
+				
                 var s2 = scope.Resolve<IBatterySensor>();
                 var s3 = scope.Resolve<ICableSensor>();
                 ControlUnit<ISensor> controlUnit = new ControlUnit<ISensor>(new List<ISensor> { s1, s2 });

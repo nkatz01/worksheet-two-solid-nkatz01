@@ -1,7 +1,8 @@
 ﻿using System;
-namespace AlarmSystem
+ namespace AlarmSystem
 {
     public class FireSensor : IBatterySensor
+<<<<<<< HEAD
     {
         public bool IsTriggered { get; set; }
         public double BatteryPercentage { get; set; }
@@ -11,6 +12,19 @@ namespace AlarmSystem
            
             IsTriggered = false;
             BatteryPercentage = double(100);
+=======
+    {	 public double SINGLE_USAGE_DECREMENT  { get;   }
+		public double TRIGGER  { get;   }
+ 		 public string Location { get; set; }
+		public double BatteryPercentage { get;  set; }
+
+        public FireSensor(ILocationProvider provider)
+        {	 
+            TRIGGER = 5;
+			Location=provider.Location;
+			BatteryPercentage=1.00;
+			SINGLE_USAGE_DECREMENT=0.10;
+>>>>>>> ea2d2368d7e20710b63b76d77dacbcb78f600d30
         }
 
 
@@ -26,69 +40,123 @@ namespace AlarmSystem
 
         public string GetLocation()
         {
-            return String.Empty; // convention is to use the .NET class for properties/methods/constants
+          
+          return Location;
+			 
         }
+		
+		
+	
+			public bool IsTriggered() {
+				 
+				 return this.IsTriggeredDefault();
+			 }
+
+	 
 
         public string GetSensorType()
         {
-            return String.Empty;
+            return this.GetType().ToString();
         }
 
-        public double GetBatteryPercentage()
+        public void UseBattery()
         {
-            return -1.0;
-        }
-    }
-
+			 
+              BatteryPercentage-=SINGLE_USAGE_DECREMENT;     
+		}
+	}
+	
     public class SmokeSensor : IBatterySensor
     {
-        public bool IsTriggered { get; set; }
-
-        public SmokeSensor()
+public double TRIGGER  { get;   }		
+	public  double SINGLE_USAGE_DECREMENT  { get;   }
+		public string Location { get; set; }
+		public double BatteryPercentage { get;  set; }
+		
+        public SmokeSensor(ILocationProvider provider)
         {
+<<<<<<< HEAD
               Random RandomGen = new Random();          
             int randomValue = RandomGen.Next(100);
             if (randomValue <=10 ) { 
              IsTriggered = true;
             }
             IsTriggered = false;
+=======
+            TRIGGER = 10;
+			Location=provider.Location;
+			BatteryPercentage=1.00;
+			SINGLE_USAGE_DECREMENT=0.20;
+>>>>>>> ea2d2368d7e20710b63b76d77dacbcb78f600d30
         }
 
         public string GetLocation()
         {
-            return String.Empty;
+			 
+          return Location;	
         }
+		
+	
+		public bool IsTriggered() {
+				 
+				 return this.IsTriggeredDefault();
+			 }
 
         public string GetSensorType()
         {
-            return String.Empty;
+              return this.GetType().ToString();
         }
 
-        public double GetBatteryPercentage()
-        {
-            return -1.0;
+        public void UseBattery()
+        {		 
+				
+               BatteryPercentage-=SINGLE_USAGE_DECREMENT; 
         }
     }
 
     public class MotionSensor : ICableSensor
-    {
-        public bool IsTriggered { get; set; }
-
-        public MotionSensor()
+    {public double TRIGGER  { get;   }	
+	public string Location { get; set; }
+ 
+        public MotionSensor(ILocationProvider provider)
         {
-            IsTriggered = false;
+            TRIGGER = 20;
+			Location=provider.Location;
         }
 
         public string GetLocation()
         {
-            return String.Empty;
+            return Location;
         }
 
         public string GetSensorType()
         {
-            return String.Empty;
+               return this.GetType().ToString();
         }
-
+		
+		
+			 public bool IsTriggered() {
+				 
+				 return this.IsTriggeredDefault();
+			 }
 
     }
+	
+		 static class ISensorHelper
+	{
+		
+		public static bool IsTriggeredDefault(this ISensor iSensor)
+		{
+				Random rand = new Random();
+				int numberUnder100 = rand.Next(100);
+				if (numberUnder100 < iSensor.TRIGGER)
+					return true; 
+				return false;
+		 }
+		 
+		 
+	}
+	
+	
+
 }

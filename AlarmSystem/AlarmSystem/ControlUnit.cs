@@ -1,4 +1,5 @@
 ﻿#define POLL
+
 using System;
 using System.Collections.Generic;
 
@@ -14,10 +15,15 @@ namespace AlarmSystem
         {
 
             this.sensors = sensors;
-            //Console.WriteLine(sensors);
+            
         }
 
-
+		
+		
+		 
+		
+		
+		
         public virtual void PollSensors()
         {
 
@@ -26,7 +32,7 @@ namespace AlarmSystem
 #if ISOLATE && POLL
             foreach (ISensor sensor in sensors)
             {
-                if (sensor.IsTriggered)//&& !(sensor is ICableSensor) )
+                if (sensor.IsTriggered())
                 {
                     Console.WriteLine("A " + sensor.GetSensorType() + " sensor was triggered at " + sensor.GetLocation());
                 }
@@ -35,31 +41,91 @@ namespace AlarmSystem
 
                     Console.WriteLine("Polled " + sensor.GetSensorType() + " at " + sensor.GetLocation() + " successfully");
                 }
+			
             }
 
 
 #endif
 
-            Console.WriteLine("I'm still working");
+        
         }
     }
 
-    interface ISensor
+	public interface  IControlUnit<T>
+		{
+			public List<T> sensors { get; set; }
+			void PollSensors();
+			
+		}
+public	interface ISafetyControlUnit<T> : IControlUnit<T>
+		{
+			void GetBatteryPercentage();
+
+
+		}
+
+	public interface ISecurityControlUnit<T> : IControlUnit<T>
+		{
+			
+		
+
+		}
+	
+   public interface ISensor
     {
-        bool IsTriggered { get; set; }
+		double TRIGGER  { get;   }
+         bool IsTriggered();
         string GetLocation();
         string GetSensorType();
+		  string Location { get; set; }
     }
-    interface IBatterySensor : ISensor
+  public  interface IBatterySensor : ISensor
+    {
+
+		    double BatteryPercentage { get;  set; }
+         void UseBattery();
+		  double SINGLE_USAGE_DECREMENT  { get;   }
+    }
+
+   public interface ICableSensor : ISensor
     {
 
 
-        double GetBatteryPercentage();
+    }
+	
+	public interface  ILocationProvider
+    {
+		public string Location { get; set; }
+
     }
 
-    interface ICableSensor : ISensor
-    {
 
+	 public class SensorInAuditorium : ILocationProvider
+    {
+         public string Location { get; set; }
+	   public SensorInAuditorium()
+        {
+            Location = "the auditorium";
+        }
+
+    }
+	
+	 public class SensorLobby1stFloor : ILocationProvider
+    {
+		public string Location { get; set; }
+        public SensorLobby1stFloor()
+        {
+            Location = "Lobby 1st floor";
+        }
+
+    }
+
+	 public class SensorAtFrontDoor : ILocationProvider
+    { public string Location { get; set; }
+        public SensorAtFrontDoor()
+        {
+            Location = "the front door";
+        }
 
     }
 }

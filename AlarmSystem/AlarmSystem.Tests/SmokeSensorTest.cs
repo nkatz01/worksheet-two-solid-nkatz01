@@ -5,7 +5,7 @@ namespace AlarmSystem.Tests
     [TestClass]
     public class SmokeSensorTest
     {
-        [TestMethod]
+     /*    [TestMethod]
         public void TestThatIsTriggeredReturnsFalse()
         {
             SmokeSensor sensor = new SmokeSensor();
@@ -35,6 +35,6 @@ namespace AlarmSystem.Tests
             SmokeSensor sensor = new SmokeSensor();
             double batteryPercentage = sensor.GetBatteryPercentage();
             Assert.AreEqual(-1.0, batteryPercentage);
-        }
+        } */
     }
 }

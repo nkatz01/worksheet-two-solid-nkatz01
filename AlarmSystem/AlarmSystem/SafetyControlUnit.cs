@@ -40,7 +40,7 @@ namespace AlarmSystem
 
         public SafetyControlUnit(List<T> sensors) : base(sensors)
         {
-            //Console.WriteLine(sensors);
+            
         }
 
 

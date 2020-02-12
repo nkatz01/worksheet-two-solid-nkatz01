@@ -15,7 +15,7 @@ namespace AlarmSystem
         {
 
             this.sensors = sensors;
-            //Console.WriteLine(sensors);
+            
         }
 
 		
@@ -32,7 +32,7 @@ namespace AlarmSystem
 #if ISOLATE && POLL
             foreach (ISensor sensor in sensors)
             {
-                if (sensor.IsTriggered())//&& !(sensor is ICableSensor) )
+                if (sensor.IsTriggered())
                 {
                     Console.WriteLine("A " + sensor.GetSensorType() + " sensor was triggered at " + sensor.GetLocation());
                 }
@@ -41,49 +41,45 @@ namespace AlarmSystem
 
                     Console.WriteLine("Polled " + sensor.GetSensorType() + " at " + sensor.GetLocation() + " successfully");
                 }
-				 // Console.WriteLine(  sensor is IBatterySensor );
-				//if (sensor  is IBatterySensor){
-					 //Console.WriteLine(  sensor is ICableSensor );
-				  
-				//}
+			
             }
 
 
 #endif
 
-           // Console.WriteLine("I'm still working");
+        
         }
     }
 
-	interface  IControlUnit<T>
+	public interface  IControlUnit<T>
 		{
 			public List<T> sensors { get; set; }
 			void PollSensors();
 			
 		}
-	interface ISafetyControlUnit<T> : IControlUnit<T>
+public	interface ISafetyControlUnit<T> : IControlUnit<T>
 		{
 			void GetBatteryPercentage();
 
 
 		}
 
-	interface ISecurityControlUnit<T> : IControlUnit<T>
+	public interface ISecurityControlUnit<T> : IControlUnit<T>
 		{
 			
 		
 
 		}
 	
-    interface ISensor
+   public interface ISensor
     {
 		double TRIGGER  { get;   }
-         bool IsTriggered();// { get; set; }
+         bool IsTriggered();
         string GetLocation();
         string GetSensorType();
 		  string Location { get; set; }
     }
-    interface IBatterySensor : ISensor
+  public  interface IBatterySensor : ISensor
     {
 
 		    double BatteryPercentage { get;  set; }
@@ -91,7 +87,7 @@ namespace AlarmSystem
 		  double SINGLE_USAGE_DECREMENT  { get;   }
     }
 
-    interface ICableSensor : ISensor
+   public interface ICableSensor : ISensor
     {
 
 
@@ -103,10 +99,8 @@ namespace AlarmSystem
 
     }
 
-#if DEVMOD
-	
-#endif
-	 internal class SensorInAuditorium : ILocationProvider
+
+	 public class SensorInAuditorium : ILocationProvider
     {
          public string Location { get; set; }
 	   public SensorInAuditorium()
@@ -116,7 +110,7 @@ namespace AlarmSystem
 
     }
 	
-	 internal class SensorLobby1stFloor : ILocationProvider
+	 public class SensorLobby1stFloor : ILocationProvider
     {
 		public string Location { get; set; }
         public SensorLobby1stFloor()
@@ -126,7 +120,7 @@ namespace AlarmSystem
 
     }
 
-	 internal class SensorAtFrontDoor : ILocationProvider
+	 public class SensorAtFrontDoor : ILocationProvider
     { public string Location { get; set; }
         public SensorAtFrontDoor()
         {

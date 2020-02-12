@@ -5,7 +5,7 @@ namespace AlarmSystem.Tests
     [TestClass]
     public class MotionSensorTest
     {
-        [TestMethod]
+/*         [TestMethod]
         public void TestThatIsTriggeredReturnsFalse()
         {
             MotionSensor sensor = new MotionSensor();
@@ -27,7 +27,7 @@ namespace AlarmSystem.Tests
             MotionSensor sensor = new MotionSensor();
             string sensorType = sensor.GetSensorType();
             Assert.AreEqual(string.Empty, sensorType);
-        }
+        } */
 
        
     }

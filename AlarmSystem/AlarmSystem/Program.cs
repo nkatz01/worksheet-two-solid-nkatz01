@@ -1,10 +1,11 @@
-﻿//#define ASK
+﻿ #define ASK
 #define DEVMOD
+
 using System.Collections.Generic;
 using System;
 using System.Reflection;
 using Autofac;
-//dotnet run
+
 namespace AlarmSystem
 {
     class Program
@@ -24,14 +25,10 @@ namespace AlarmSystem
                 var s1 = scope.Resolve<IBatterySensor>();				
                 var s2 = scope.Resolve<IBatterySensor>();
                 var s3 = scope.Resolve<ICableSensor>();
-               // ControlUnit<ISensor> controlUnit = new ControlUnit<ISensor>(new List<ISensor> { s1, s2 });
-                 SafetyControlUnit<IBatterySensor> SafetycontrolUnit = new SafetyControlUnit<IBatterySensor>(new List<IBatterySensor> { s1, s2 });
-				
-				 
-				 //Console.WriteLine(  s1 is IBatterySensor ); 
-				
+               
+                 SafetyControlUnit<IBatterySensor> SafetyControlUnit = new SafetyControlUnit<IBatterySensor>(new List<IBatterySensor> { s1, s2 });
                 SecurityControlUnit<ICableSensor> securityControlUnit = new SecurityControlUnit<ICableSensor>(new List<ICableSensor> { s3 });
-                // Console.WriteLine("all fine");
+             
 
 
 
@@ -58,15 +55,16 @@ namespace AlarmSystem
                     if (input.Equals("poll"))
                     {
 				
-                       SafetyControlUnit.PollSensors(); //uncomment
+                       SafetyControlUnit.PollSensors();  
+						SafetyControlUnit.GetBatteryPercentage();
+						securityControlUnit.PollSensors(); 
                      }
                 }
 #endif
 
 
-                SafetycontrolUnit.PollSensors(); //remove
-               securityControlUnit.PollSensors(); //remove
-				 SafetycontrolUnit.GetBatteryPercentage();
+               // SafetycontrolUnit.PollSensors(); //remove
+ 				 
 				 
 					
             }

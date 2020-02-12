@@ -7,23 +7,21 @@ namespace AlarmSystem
 		 public string Location { get; set; }
 		public double BatteryPercentage { get; private set; }
 
-        public FireSensor()
+        public FireSensor(ILocationProvider provider)
         {	 
             IsTriggered = false;
+			Location=provider.Location;
         }
 
 
         public string GetLocation()
         {
-           if (Location!=null)
+          
           return Location;
-			return String.Empty;
+			 
         }
 		
-		  public void SetLocation(string Location)
-        {
-            this.Location = Location; // convention is to use the .NET class for properties/methods/constants
-        }
+	 
 
         public string GetSensorType()
         {
@@ -42,25 +40,22 @@ namespace AlarmSystem
         public bool IsTriggered { get; set; }
 		public string Location { get; set; }
 		public double BatteryPercentage { get; private set; }
-        public SmokeSensor()
+		
+        public SmokeSensor(ILocationProvider provider)
         {
-			
-			
             IsTriggered = false;
+			Location=provider.Location;
         }
 
         public string GetLocation()
         {
-			if (Location!=null)
+			 
           return Location;
-			return String.Empty;
+			 
 			
         }
 		
-		  public void SetLocation(string Location)
-        {
-            this.Location = Location; // convention is to use the .NET class for properties/methods/constants
-        }
+		 
 
         public string GetSensorType()
         {
@@ -78,14 +73,15 @@ namespace AlarmSystem
     {	public string Location { get; set; }
         public bool IsTriggered { get; set; }
 
-        public MotionSensor()
+        public MotionSensor(ILocationProvider provider)
         {
             IsTriggered = false;
+			Location=provider.Location;
         }
 
         public string GetLocation()
         {
-            return String.Empty;
+            return Location;
         }
 
         public string GetSensorType()

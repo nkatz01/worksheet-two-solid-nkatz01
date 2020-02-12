@@ -65,72 +65,41 @@ namespace AlarmSystem
 
     }
 	
-	 interface  ILocationProvider
+	public interface  ILocationProvider
     {
-		string Location { get; set; }
+		public string Location { get; set; }
 
     }
-	
-	 interface ILocationAttacher
-    {
-        ILocationProvider LocationProvider { get; set; }
-		ISensor Receiver { get; set; }
-		
-        void Attach();
-    }
 
+#if DEVMOD
 	
-	
-	
-	internal class StandardLocationExtractor : ILocationAttacher
-    {
-        public StandardLocationExtractor(ILocationProvider provider, ISensor receiver)
-        {
-            LocationProvider = provider;
-			Receiver = receiver;
-        }
-
-        public ILocationProvider LocationProvider { get; set; }
-		public ISensor Receiver { get; set; }
-		
-        public void Attach()
-        {
-            if (LocationProvider == null || Receiver == null )
-            {
-                throw new Exception($"You must set the property LocationProvider and Receiver of class: {GetType()}");
-            }
-
-            Receiver.Location=LocationProvider.Location;
-        }
-    }
-	
+#endif
 	 internal class SensorInAuditorium : ILocationProvider
     {
-        public SensorInAuditorium()
+         public string Location { get; set; }
+	   public SensorInAuditorium()
         {
-            Location = "In the auditorium";
+            Location = "the auditorium";
         }
 
-        public string Location { get; set; }
     }
 	
 	 internal class SensorLobby1stFloor : ILocationProvider
     {
+		public string Location { get; set; }
         public SensorLobby1stFloor()
         {
             Location = "Lobby 1st floor";
         }
 
-        public string Location { get; set; }
     }
 
 	 internal class SensorAtFrontDoor : ILocationProvider
-    {
+    { public string Location { get; set; }
         public SensorAtFrontDoor()
         {
-            Location = "At the front door";
+            Location = "the front door";
         }
 
-        public string Location { get; set; }
     }
 }

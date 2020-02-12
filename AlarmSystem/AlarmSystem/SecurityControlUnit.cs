@@ -17,12 +17,10 @@ namespace AlarmSystem
         {
             TimeSpan now = DateTime.Now.TimeOfDay;
             TimeSpan nowTrimmed = new TimeSpan(now.Hours, now.Minutes, now.Seconds);
-
-
             TimeSpan FROM = new TimeSpan(22, 0, 0);
             TimeSpan UNTIL = new TimeSpan(06, 0, 0);
-
-            if ((nowTrimmed > FROM) || (nowTrimmed < FROM && nowTrimmed <= UNTIL))
+			
+             if ((nowTrimmed > FROM) || (nowTrimmed < FROM && nowTrimmed <= UNTIL))
             {
                 Console.WriteLine("Who's not asleep???");
 

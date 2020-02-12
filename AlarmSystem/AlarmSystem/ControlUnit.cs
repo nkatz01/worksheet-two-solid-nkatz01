@@ -46,7 +46,7 @@ namespace AlarmSystem
 
     interface ISensor
     {
-        bool IsTriggered();
+        bool IsTriggered { get; set; }
         string GetLocation();
         string GetSensorType();
     }

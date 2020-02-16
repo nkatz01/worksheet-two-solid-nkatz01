@@ -26,7 +26,7 @@ namespace AlarmSystem.Tests
 
             var builder = new ContainerBuilder();
             builder.RegisterType<SensorLobby1stFloor>().As<ILocationProvider>();
-             //  builder.RegisterType<SensorAtFrontDoor>().As<ILocationProvider>();
+          
 
             builder.RegisterType<MotionSensor>().As<ICableSensor>();
             Container = builder.Build();
@@ -65,11 +65,9 @@ namespace AlarmSystem.Tests
                         innercount++;
 					isTriggered=false;};
                 }
-              //	TestContext.WriteLine(innercount.ToString());   
                 outercount+=innercount;
             }
-			//TestContext.WriteLine(outercount.ToString());
-			//TestContext.WriteLine((outercount/100).ToString());
+			
             Assert.IsTrue((outercount/100)<21 && (outercount/100)>19 );
          }
 

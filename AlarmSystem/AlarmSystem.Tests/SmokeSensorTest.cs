@@ -75,11 +75,9 @@ namespace AlarmSystem.Tests
                         innercount++;
 					isTriggered=false;};
                 }
-             // 	TestContext.WriteLine(innercount.ToString());   
-                outercount+=innercount;
+                 outercount+=innercount;
             }
-			//TestContext.WriteLine(outercount.ToString());
-			//TestContext.WriteLine((outercount/100).ToString());
+		 
             Assert.IsTrue((outercount/100)<11 && (outercount/100)>9 );
          } 
 

@@ -25,8 +25,7 @@ namespace AlarmSystem.Tests
 			
 			var builder = new ContainerBuilder();
             builder.RegisterType<SensorInAuditorium>().As<ILocationProvider>();
-          //  builder.RegisterType<SensorLobby1stFloor>().As<ILocationProvider>();
-          //  builder.RegisterType<SensorAtFrontDoor>().As<ILocationProvider>();
+         
 
             builder.RegisterType<FireSensor>().As<IBatterySensor>();
             Container = builder.Build();
@@ -46,18 +45,7 @@ namespace AlarmSystem.Tests
 
             Assert.AreEqual("the auditorium", FireSensor.GetLocation());
 
-/* Console.WriteLine("asdfsdafsdaflasdkfjasdkfjklsdajfldkf");
-Console.WriteLine("asdfsdafsdaflasdkfjasdkfjklsdajfldkf");
-Console.WriteLine("asdfsdafsdaflasdkfjasdkfjklsdajfldkf");
-Console.WriteLine("asdfsdafsdaflasdkfjasdkfjklsdajfldkf");
-Console.WriteLine("asdfsdafsdaflasdkfjasdkfjklsdajfldkf");
-Console.WriteLine("asdfsdafsdaflasdkfjasdkfjklsdajfldkf");
-Debug.WriteLine("asdfsdafsdaflasdkfjasdkfjklsdajfldkf");
-Trace.WriteLine("asdfsdafsdaflasdkfjasdkfjklsdajfldkf");
-TestContext.WriteLine("asdfsdafsdaflasdkfjasdkfjklsdajfldkf");
-TestContext.WriteLine("asdfsdafsdaflasdkfjasdkfjklsdajfldkf");
-TestContext.WriteLine("asdfsdafsdaflasdkfjasdkfjklsdajfldkf");
-TestContext.WriteLine("asdfsdafsdaflasdkfjasdkfjklsdajfldkf"); */
+ 
                     
         }
 
@@ -85,11 +73,9 @@ TestContext.WriteLine("asdfsdafsdaflasdkfjasdkfjklsdajfldkf"); */
                         innercount++;
 					isTriggered=false;};
                 }
-              //	TestContext.WriteLine(innercount.ToString());   
-                outercount+=innercount;
+                 outercount+=innercount;
             }
-			//TestContext.WriteLine(outercount.ToString());
-			//TestContext.WriteLine((outercount/100).ToString());
+			 
             Assert.IsTrue((outercount/100)<6 && (outercount/100)>4 );
          }
 
@@ -104,17 +90,7 @@ TestContext.WriteLine("asdfsdafsdaflasdkfjasdkfjklsdajfldkf"); */
             double batteryPercentage = FireSensor.BatteryPercentage;
              Assert.AreEqual(1.00, batteryPercentage);
        }
-           /*
-                [TestMethod]
-           public void TestThatBatteryPercentageDepletes10PercentAtEachPoll()
-           {
-               SmokeSensor sensor = new SmokeSensor();
-               double batteryPercentage = sensor.GetBatteryPercentage();
-               Assert.AreEqual(-1.0, batteryPercentage);
-           }
-         
-         
-         */
+           
     }
 
 

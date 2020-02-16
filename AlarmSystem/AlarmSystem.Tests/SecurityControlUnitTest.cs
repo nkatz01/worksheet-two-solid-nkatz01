@@ -9,7 +9,7 @@ namespace AlarmSystem.Tests
 {	
 	[TestClass]
 	public class SecurityControlUnitTest
-	//<T> : ControlUnit<T> where T : ICableSensor
+	 
     {
 		 
 		
@@ -22,9 +22,7 @@ namespace AlarmSystem.Tests
 		[TestMethod]
         public  void  TestThatPollingMotionSensorNotBetween2200To0600Fails()
         {
-         // TimeSpan(23, 0, 0)//succeeds
-		 // TimeSpan(01, 0, 0)//succeeds
-		  //TimeSpan(21, 0, 0)
+         
 		  	ILocationProvider	 FD = new SensorAtFrontDoor();
 			ICableSensor	  MS = new MotionSensor(FD);
 			SCCU_MS = new SecurityControlUnit<ICableSensor>(new List<ICableSensor>{MS});

@@ -8,7 +8,7 @@ namespace AlarmSystem.Tests
 {
 	[TestClass]
   public  class SafetyControlUnitTest
-	//<T> : ControlUnit<T> where T : IBatterySensor
+	 
     {
 	
 		public SafetyControlUnit<IBatterySensor> SFCU_FS { get; set; }
@@ -34,8 +34,7 @@ namespace AlarmSystem.Tests
 				IBatterySensor	 SS = new SmokeSensor(SAU);
 				SFCU_SS = new SafetyControlUnit<IBatterySensor>(new List<IBatterySensor>{SS});
 			 Assert.IsTrue((SFCU_SS.PollSensors() == "Polled AlarmSystem.SmokeSensor at the auditorium successfully\n" || SFCU_SS.PollSensors() == "A AlarmSystem.SmokeSensor sensor was triggered at the auditorium\n" )?true:false,"TestThatPollSmokeSensorSucceeds() FAILED") ; 
-			//Assert.AreEqual("A AlarmSystem.SmokeSensor sensor was triggered at the auditorium\n",SFCU_SS.PollSensors());
-			// Assert.AreEqual("Polled AlarmSystem.SmokeSensor at the auditorium successfully\n",SFCU_SS.PollSensors());
+			 
 			
 			}
 

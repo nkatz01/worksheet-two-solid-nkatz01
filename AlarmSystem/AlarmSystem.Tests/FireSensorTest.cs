@@ -34,7 +34,7 @@ namespace AlarmSystem.Tests
 			AuditorProv = Container.Resolve<ILocationProvider>();
 			FireSensor = Container.Resolve<IBatterySensor>();
             Assert.AreEqual(FireSensor.Location, AuditorProv.Location);
-
+			
 
         }
 
@@ -46,9 +46,19 @@ namespace AlarmSystem.Tests
 
             Assert.AreEqual("the auditorium", FireSensor.GetLocation());
 
-
-
-            
+/* Console.WriteLine("asdfsdafsdaflasdkfjasdkfjklsdajfldkf");
+Console.WriteLine("asdfsdafsdaflasdkfjasdkfjklsdajfldkf");
+Console.WriteLine("asdfsdafsdaflasdkfjasdkfjklsdajfldkf");
+Console.WriteLine("asdfsdafsdaflasdkfjasdkfjklsdajfldkf");
+Console.WriteLine("asdfsdafsdaflasdkfjasdkfjklsdajfldkf");
+Console.WriteLine("asdfsdafsdaflasdkfjasdkfjklsdajfldkf");
+Debug.WriteLine("asdfsdafsdaflasdkfjasdkfjklsdajfldkf");
+Trace.WriteLine("asdfsdafsdaflasdkfjasdkfjklsdajfldkf");
+TestContext.WriteLine("asdfsdafsdaflasdkfjasdkfjklsdajfldkf");
+TestContext.WriteLine("asdfsdafsdaflasdkfjasdkfjklsdajfldkf");
+TestContext.WriteLine("asdfsdafsdaflasdkfjasdkfjklsdajfldkf");
+TestContext.WriteLine("asdfsdafsdaflasdkfjasdkfjklsdajfldkf"); */
+                    
         }
 
          [TestMethod]
@@ -62,37 +72,39 @@ namespace AlarmSystem.Tests
         [TestMethod]
          public void TestThatIsTriggeredReturnsTrue10PercentOfTheTime()
          {
-            int outercount = 0;
-            int innercount= 0;
-            bool isTriggered;
+            double outercount = 0;
+            double innercount= 0;
+            bool isTriggered =false;
 
             for (int j = 0; j < 100; j++)
-            {
+            {innercount=0;
                 for (int i = 0; i < 100; i++)
                 {
                     isTriggered = FireSensor.IsTriggered();
-                    if (isTriggered)
+                    if (isTriggered){
                         innercount++;
+					isTriggered=false;};
                 }
-                if (innercount > 100/10)
-                outercount++;
+              //	TestContext.WriteLine(innercount.ToString());   
+                outercount+=innercount;
             }
-
-             Assert.IsTrue(outercount<= 1000/10);
+			//TestContext.WriteLine(outercount.ToString());
+			//TestContext.WriteLine((outercount/100).ToString());
+            Assert.IsTrue((outercount/100)<6 && (outercount/100)>4 );
          }
 
         
 
-        /* 
+       
 
-         [TestMethod]
-         public void TestThatGetBatteryPercentageReturnsNegativeOne()
+          [TestMethod]
+       public void TestThatBatteryPercentageIs100PercentAtSensorCreation() 
          {
-             FireSensor sensor = new FireSensor();
-             double batteryPercentage = sensor.GetBatteryPercentage();
-             Assert.AreEqual(-1.0, batteryPercentage);
-         } 
-         
+              
+            double batteryPercentage = FireSensor.BatteryPercentage;
+             Assert.AreEqual(1.00, batteryPercentage);
+       }
+           /*
                 [TestMethod]
            public void TestThatBatteryPercentageDepletes10PercentAtEachPoll()
            {

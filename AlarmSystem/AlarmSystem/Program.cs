@@ -33,17 +33,7 @@ namespace AlarmSystem
 
 
 
-                #region
-#if DEVMOD
-
-
-
-
-
-
-
-
-#if ISOLATE && ASK
+               
 			    string input ="exit";
 			
 		
@@ -55,13 +45,12 @@ namespace AlarmSystem
                     if (input.Equals("poll"))
                     {
 				
-                       SafetyControlUnit.PollSensors();  
-						SafetyControlUnit.GetBatteryPercentage();
-						securityControlUnit.PollSensors(); 
+                       Console.WriteLine(SafetyControlUnit.PollSensors());  
+						 Console.WriteLine(SafetyControlUnit.GetBatteryPercentage());
+						 Console.WriteLine(securityControlUnit.PollSensors()); 
                      }
                 }
-#endif
-
+ 
 
                // SafetycontrolUnit.PollSensors(); //remove
  				 
@@ -73,8 +62,7 @@ namespace AlarmSystem
                 Console.Error.WriteLine("Error during configuration demonstration: {0}", ex);
             }
 
-#endif
-            #endregion
+ 
         }
 
     }

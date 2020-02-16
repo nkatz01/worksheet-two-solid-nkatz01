@@ -43,19 +43,35 @@ namespace AlarmSystem.Tests
         public void TestGetLocation()
         {
 
-            Assert.AreEqual("Lobby 1st floor", MotionSensor.GetLocation());
+            Assert.AreEqual("the Lobby 1st floor", MotionSensor.GetLocation());
 
         }
 
 
 
-        //[TestMethod]
-        // public void TestThatIsTriggeredReturnsTrue20PercentOfTheTime()
-        // {
-        //     SmokeSensor sensor = new SmokeSensor();
-        //     bool isTriggered = sensor.IsTriggered;
-        //     Assert.AreEqual(false, isTriggered);
-        // }
+       [TestMethod]
+         public void TestThatIsTriggeredReturnsTrue20PercentOfTheTime()
+         {
+            double outercount = 0;
+            double innercount= 0;
+            bool isTriggered =false;
+
+            for (int j = 0; j < 100; j++)
+            {innercount=0;
+                for (int i = 0; i < 100; i++)
+                {
+                    isTriggered = MotionSensor.IsTriggered();
+                    if (isTriggered){
+                        innercount++;
+					isTriggered=false;};
+                }
+              //	TestContext.WriteLine(innercount.ToString());   
+                outercount+=innercount;
+            }
+			//TestContext.WriteLine(outercount.ToString());
+			//TestContext.WriteLine((outercount/100).ToString());
+            Assert.IsTrue((outercount/100)<21 && (outercount/100)>19 );
+         }
 
        
 

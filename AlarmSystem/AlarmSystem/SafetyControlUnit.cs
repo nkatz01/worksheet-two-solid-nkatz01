@@ -1,28 +1,28 @@
-﻿#define POLL
-#define DEVMOD
+﻿
 using System;
 using System.Collections.Generic;
 
 namespace AlarmSystem
 {
-    class SafetyControlUnit<T> : ControlUnit<T> where T : IBatterySensor
+   public class SafetyControlUnit<T> : ControlUnit<T> where T : IBatterySensor
     {
-#if DEVMOD
 
 
 
 
 
-        public void GetBatteryPercentage()
-        {
+
+        public string GetBatteryPercentage()
+        {	string output="";
             foreach (IBatterySensor sensor in sensors)
 			{
-			 Console.WriteLine("Battery power of the Sensor at " + sensor.GetLocation()+" of type "+sensor.GetSensorType()+" is at " + Math.Round(sensor.BatteryPercentage,2) + "percent");
+			 output+= "Battery power of the Sensor at " + sensor.GetLocation()+" of type "+sensor.GetSensorType()+" is at " + Math.Round(sensor.BatteryPercentage,2) + "percent\n";
 			}
+			return output;
         }
 		
-		 public override void PollSensors()
-        {
+		 public override string PollSensors()
+        {	string output="";
 			 foreach (IBatterySensor sensor in sensors)
             
 			{
@@ -31,10 +31,11 @@ namespace AlarmSystem
 			
 			}
 
-			base.PollSensors();
+			output+= base.PollSensors();
+			return output;
 		}
 
-#endif
+
 
 
 

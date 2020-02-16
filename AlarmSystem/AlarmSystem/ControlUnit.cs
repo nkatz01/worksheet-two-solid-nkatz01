@@ -1,4 +1,4 @@
-﻿#define POLL
+﻿
 
 using System;
 using System.Collections.Generic;
@@ -24,28 +24,29 @@ namespace AlarmSystem
 		
 		
 		
-        public virtual void PollSensors()
+        public virtual string PollSensors()
         {
+				string output="";
 
+			 
 
-
-#if ISOLATE && POLL
             foreach (ISensor sensor in sensors)
             {
                 if (sensor.IsTriggered())
                 {
-                    Console.WriteLine("A " + sensor.GetSensorType() + " sensor was triggered at " + sensor.GetLocation());
+                     output+= "A " + sensor.GetSensorType() + " sensor was triggered at " + sensor.GetLocation()+"\n";
                 }
                 else
                 {
 
-                    Console.WriteLine("Polled " + sensor.GetSensorType() + " at " + sensor.GetLocation() + " successfully");
+                     output+= "Polled " + sensor.GetSensorType() + " at " + sensor.GetLocation() + " successfully\n";
                 }
 			
             }
+			return output;
 
 
-#endif
+
 
         
         }
@@ -115,7 +116,7 @@ public	interface ISafetyControlUnit<T> : IControlUnit<T>
 		public string Location { get; set; }
         public SensorLobby1stFloor()
         {
-            Location = "Lobby 1st floor";
+            Location = "the Lobby 1st floor";
         }
 
     }

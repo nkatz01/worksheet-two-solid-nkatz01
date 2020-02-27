@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace AlarmSystem
 {
-   public class SafetyControlUnit<T> : ControlUnit<T> where T : IBatterySensor
+   public class SafetyControlUnit<T> : ControlUnit<IBatterySensor> , ISafetyControlUnit<IBatterySensor> where T : IBatterySensor
     {
 
 
@@ -39,7 +39,7 @@ namespace AlarmSystem
 
 
 
-        public SafetyControlUnit(List<T> sensors) : base(sensors)
+        public SafetyControlUnit(List<IBatterySensor> sensors) : base(sensors)
         {
             
         }

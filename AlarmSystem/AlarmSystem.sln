@@ -1,9 +1,10 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlarmSystem", "AlarmSystem\AlarmSystem.csproj", "{9EBC1DD1-3CD0-497F-98C0-C2D240ABF7F9}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlarmSystem", "AlarmSystem\AlarmSystem.csproj", "{9EBC1DD1-3CD0-497F-98C0-C2D240ABF7F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlarmSystem.Tests", "AlarmSystem.Tests\AlarmSystem.Tests.csproj", "{DF360D5C-4880-4D24-A502-3C2D34C56D7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTestProject3", "UnitTestProject3\UnitTestProject3.csproj", "{0D7B55F1-15D1-4051-91BB-EB6EF8380CC8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +16,15 @@ Global
 		{9EBC1DD1-3CD0-497F-98C0-C2D240ABF7F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EBC1DD1-3CD0-497F-98C0-C2D240ABF7F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EBC1DD1-3CD0-497F-98C0-C2D240ABF7F9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DF360D5C-4880-4D24-A502-3C2D34C56D7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DF360D5C-4880-4D24-A502-3C2D34C56D7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DF360D5C-4880-4D24-A502-3C2D34C56D7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DF360D5C-4880-4D24-A502-3C2D34C56D7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D7B55F1-15D1-4051-91BB-EB6EF8380CC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D7B55F1-15D1-4051-91BB-EB6EF8380CC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D7B55F1-15D1-4051-91BB-EB6EF8380CC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D7B55F1-15D1-4051-91BB-EB6EF8380CC8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D0477A38-843B-4C6A-A106-C4BCC759A89F}
 	EndGlobalSection
 EndGlobal

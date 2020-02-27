@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace AlarmSystem
 {
-    public class ControlUnit<T>
+    public class ControlUnit<T> : IControlUnit<T>
     {
 
 
@@ -55,17 +55,17 @@ namespace AlarmSystem
 	public interface  IControlUnit<T>
 		{
 			public List<T> sensors { get; set; }
-			void PollSensors();
+			String PollSensors();
 			
 		}
-public	interface ISafetyControlUnit<T> : IControlUnit<T>
+public	interface ISafetyControlUnit<IBatterySensor> : IControlUnit<IBatterySensor>
 		{
-			void GetBatteryPercentage();
+			string GetBatteryPercentage();
 
 
 		}
 
-	public interface ISecurityControlUnit<T> : IControlUnit<T>
+	public interface ISecurityControlUnit<ICableSensor> : IControlUnit<ICableSensor>
 		{
 			
 		
@@ -84,7 +84,7 @@ public	interface ISafetyControlUnit<T> : IControlUnit<T>
     {
 
 		    double BatteryPercentage { get;  set; }
-         void UseBattery();
+           void UseBattery();
 		  double SINGLE_USAGE_DECREMENT  { get;   }
     }
 

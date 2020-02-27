@@ -1,5 +1,4 @@
-﻿ #define ASK
-#define DEVMOD
+﻿
 
 using System.Collections.Generic;
 using System;

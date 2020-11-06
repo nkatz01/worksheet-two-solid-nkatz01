@@ -54,20 +54,18 @@ namespace AlarmSystem.Tests
         public void TestThatIsTriggeredReturnsTrue20PercentOfTheTime()
         {
             double count = 0;
-            bool isTriggered = false;
 
             for (int j = 0; j < 100; j++)
             {
                 for (int i = 0; i < 100; i++)
                 {
-                    isTriggered = MotionSensor.IsTriggered();
-                    if (isTriggered)
+
+                    if (MotionSensor.IsTriggered())
                     {
                         count++;
-                        isTriggered = false;
+
                     };
                 }
-
             }
 
             Assert.IsTrue((count / 100) < 21 && (count / 100) > 19);

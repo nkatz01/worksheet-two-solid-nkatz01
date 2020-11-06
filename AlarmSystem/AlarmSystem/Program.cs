@@ -16,7 +16,6 @@ namespace AlarmSystem
 
             var builder = new ContainerBuilder();
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly()).AsSelf().AsImplementedInterfaces();
-
             var container = builder.Build();
             try
             {
@@ -25,8 +24,8 @@ namespace AlarmSystem
                 var s2 = scope.Resolve<IBatterySensor>();
                 var s3 = scope.Resolve<ICableSensor>();
                
-                 SafetyControlUnit<IBatterySensor> SafetyControlUnit = new SafetyControlUnit<IBatterySensor>(new List<IBatterySensor> { s1, s2 });
-                SecurityControlUnit<ICableSensor> securityControlUnit = new SecurityControlUnit<ICableSensor>(new List<ICableSensor> { s3 });
+                SafetyControlUnit<IBatterySensor> SafetyControlUnit = new SafetyControlUnit<IBatterySensor>(new List<IBatterySensor> { s1, s2 });
+                SecurityControlUnit<ICableSensor> SecurityControlUnit = new SecurityControlUnit<ICableSensor>(new List<ICableSensor> { s3 });
              
 
 
@@ -46,7 +45,7 @@ namespace AlarmSystem
 				
                        Console.WriteLine(SafetyControlUnit.PollSensors());  
 						 Console.WriteLine(SafetyControlUnit.GetBatteryPercentage());
-						 Console.WriteLine(securityControlUnit.PollSensors()); 
+						 Console.WriteLine(SecurityControlUnit.PollSensors()); 
                      }
                 }
  

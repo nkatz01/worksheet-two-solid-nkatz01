@@ -59,24 +59,20 @@ namespace AlarmSystem.Tests
         [TestMethod]
         public void TestThatIsTriggeredReturnsTrue10PercentOfTheTime()
         {
-            double count = 0;
-
-            bool isTriggered = false;
+            double count = 0;      
 
             for (int j = 0; j < 100; j++)
             {
                 for (int i = 0; i < 100; i++)
                 {
 
-                    isTriggered = SmokeSensor.IsTriggered();
-                    if (isTriggered)
+                    if (SmokeSensor.IsTriggered())
                     {
                         count++;
-                        isTriggered = false;
+                        
                     };
                 }
             }
-
             Assert.IsTrue((count / 100) < 11 && (count / 100) > 9);
         }
 

@@ -13,107 +13,93 @@ namespace AlarmSystem
 
         public ControlUnit(List<T> sensors)
         {
-
             this.sensors = sensors;
-            
         }
 
-		
-		
-		 
-		
-		
-		
         public virtual string PollSensors()
         {
-				string output="";
-
-			 
+            string output = "";
 
             foreach (ISensor sensor in sensors)
             {
                 if (sensor.IsTriggered())
                 {
-                     output+= "A " + sensor.GetSensorType() + " sensor was triggered at " + sensor.GetLocation()+"\n";
+                    output += "A " + sensor.GetSensorType() + " sensor was triggered at " + sensor.GetLocation() + "\n";
                 }
                 else
                 {
 
-                     output+= "Polled " + sensor.GetSensorType() + " at " + sensor.GetLocation() + " successfully\n";
+                    output += "Polled " + sensor.GetSensorType() + " at " + sensor.GetLocation() + " successfully\n";
                 }
-			
+
             }
-			return output;
+            return output;
 
-
-
-
-        
         }
+
     }
 
-	public interface  IControlUnit<T>
-		{
-			public List<T> sensors { get; set; }
-			String PollSensors();
-			
-		}
-public	interface ISafetyControlUnit<IBatterySensor> : IControlUnit<IBatterySensor>
-		{
-			string GetBatteryPercentage();
-
-
-		}
-
-	public interface ISecurityControlUnit<ICableSensor> : IControlUnit<ICableSensor>
-		{
-			
-		
-
-		}
-	
-   public interface ISensor
+    public interface IControlUnit<T>
     {
-		double TRIGGER  { get;   }
-         bool IsTriggered();
+        public List<T> sensors { get; set; }
+        String PollSensors();
+
+    }
+    public interface ISafetyControlUnit<IBatterySensor> : IControlUnit<IBatterySensor>
+    {
+        string GetBatteryPercentage();
+
+
+    }
+
+    public interface ISecurityControlUnit<ICableSensor> : IControlUnit<ICableSensor>
+    {
+
+
+
+    }
+
+    public interface ISensor
+    {
+        double TRIGGER { get; }
+        bool IsTriggered();
         string GetLocation();
         string GetSensorType();
-		  string Location { get; set; }
+        string Location { get; set; }
     }
-  public  interface IBatterySensor : ISensor
+    public interface IBatterySensor : ISensor
     {
 
-		    double BatteryPercentage { get;  set; }
-           void UseBattery();
-		  double SINGLE_USAGE_DECREMENT  { get;   }
+        double BatteryPercentage { get; set; }
+        void UseBattery();
+        double SINGLE_USAGE_DECREMENT { get; }
     }
 
-   public interface ICableSensor : ISensor
+    public interface ICableSensor : ISensor
     {
 
-
-    }
-	
-	public interface  ILocationProvider
-    {
-		public string Location { get; set; }
 
     }
 
-
-	 public class SensorInAuditorium : ILocationProvider
+    public interface ILocationProvider
     {
-         public string Location { get; set; }
-	   public SensorInAuditorium()
+        public string Location { get; set; }
+
+    }
+
+    public class SensorInAuditorium : ILocationProvider
+    {
+        public string Location { get; set; }
+        public SensorInAuditorium()
         {
             Location = "the auditorium";
         }
 
     }
-	
-	 public class SensorLobby1stFloor : ILocationProvider
+
+    public class SensorLobby1stFloor : ILocationProvider
     {
-		public string Location { get; set; }
+        public string Location { get; set; }
         public SensorLobby1stFloor()
         {
             Location = "the Lobby 1st floor";
@@ -121,8 +107,9 @@ public	interface ISafetyControlUnit<IBatterySensor> : IControlUnit<IBatterySenso
 
     }
 
-	 public class SensorAtFrontDoor : ILocationProvider
-    { public string Location { get; set; }
+    public class SensorAtFrontDoor : ILocationProvider
+    {
+        public string Location { get; set; }
         public SensorAtFrontDoor()
         {
             Location = "the front door";

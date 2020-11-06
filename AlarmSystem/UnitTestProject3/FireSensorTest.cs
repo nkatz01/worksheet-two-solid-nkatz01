@@ -25,8 +25,6 @@ namespace AlarmSystem.Tests
 
             var builder = new ContainerBuilder();
             builder.RegisterType<SensorInAuditorium>().As<ILocationProvider>();
-
-
             builder.RegisterType<FireSensor>().As<IBatterySensor>();
             Container = builder.Build();
 
@@ -58,26 +56,21 @@ namespace AlarmSystem.Tests
 
 
         [TestMethod]
-        public void TestThatIsTriggeredReturnsTrue10PercentOfTheTime()
+        public void TestThatIsTriggeredReturnsTrue5PercentOfTheTime()
         {
             double count = 0;
 
-            bool isTriggered = false;
-
             for (int j = 0; j < 100; j++)
             {
-
                 for (int i = 0; i < 100; i++)
                 {
-                    isTriggered = FireSensor.IsTriggered();
-                    if (isTriggered)
+
+                    if (FireSensor.IsTriggered())
                     {
                         count++;
 
-                        isTriggered = false;
                     };
                 }
-
             }
 
             Assert.IsTrue((count / 100) < 6 && (count / 100) > 4);

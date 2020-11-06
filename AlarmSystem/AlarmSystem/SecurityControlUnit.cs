@@ -6,12 +6,6 @@ namespace AlarmSystem
 {
     public class SecurityControlUnit<T> : ControlUnit<ICableSensor>, ISecurityControlUnit<ICableSensor> where T : ICableSensor
     {
-
-
-
-
-
-
         public override string PollSensors()
         {
             TimeSpan now = DateTime.Now.TimeOfDay;
@@ -19,7 +13,6 @@ namespace AlarmSystem
             return PollSensors(nowTrimmed);
 
         }
-
 
         //overloading  
         public string PollSensors(TimeSpan timeIsNow)
@@ -31,8 +24,6 @@ namespace AlarmSystem
 
             if ((now > FROM) || (now < FROM && now <= UNTIL))
             {
-
-
                 output += base.PollSensors();
             }
             else
@@ -44,16 +35,10 @@ namespace AlarmSystem
             return output;
         }
 
-
-
-
-
         public SecurityControlUnit(List<ICableSensor> sensors) : base(sensors)
         {
 
         }
-
-
 
 
     }
